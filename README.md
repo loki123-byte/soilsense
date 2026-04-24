@@ -47,8 +47,7 @@ node server.js
 
 ### Home Page
 
-![Home](screenshots/home.png)
-
+![Home](home.png)
 ---
 
 ## 🌐 Future Improvements
