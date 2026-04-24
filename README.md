@@ -49,7 +49,9 @@ node server.js
 
 ![Home](home.png)
 ---
-
+### 🔗 Device Connection
+![Device](device-page.png)
+---
 ## 🌐 Future Improvements
 
 * Add more soil parameters
