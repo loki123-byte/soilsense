@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build:client"
+  functions = "netlify/functions"
+  publish = "dist/spa"
+
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["server/**"]
+
+# Specific chat endpoint handled by its own function (robust body parsing)
+[[redirects]]
+  force = true
+  from = "/api/ai/chat"
+  status = 200
+  to = "/.netlify/functions/ai-chat"
+
+# Fallback to Express-wrapped function for the rest of the API
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"

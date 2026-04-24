@@ -1,0 +1,324 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   */
+  :root {
+    /* Dark-natural, earthy palette */
+    --background: 150 20% 8%; /* deep green-brown */
+    --foreground: 140 10% 96%; /* near white with green tint */
+
+    --card: 150 18% 10%;
+    --card-foreground: 140 10% 96%;
+
+    --popover: 150 18% 10%;
+    --popover-foreground: 140 10% 96%;
+
+    --primary: 152 44% 32%; /* dark forest green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 22% 20%; /* earthy brown */
+    --secondary-foreground: 45 60% 92%;
+
+    --muted: 160 14% 14%;
+    --muted-foreground: 140 8% 70%;
+
+    --accent: 45 70% 45%; /* warm agrarian yellow */
+    --accent-foreground: 150 15% 10%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 12% 20%;
+    --input: 160 12% 20%;
+    --ring: 152 44% 40%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar (unused for now but aligned to theme) */
+    --sidebar-background: 150 20% 8%;
+    --sidebar-foreground: 140 10% 96%;
+    --sidebar-primary: 152 44% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 14% 14%;
+    --sidebar-accent-foreground: 140 10% 96%;
+    --sidebar-border: 160 12% 20%;
+    --sidebar-ring: 152 44% 40%;
+  }
+
+  .dark {
+    /* Keep same palette for dark since site is dark-first */
+    --background: 150 20% 8%;
+    --foreground: 140 10% 96%;
+
+    --card: 150 18% 10%;
+    --card-foreground: 140 10% 96%;
+
+    --popover: 150 18% 10%;
+    --popover-foreground: 140 10% 96%;
+
+    --primary: 152 44% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 22% 20%;
+    --secondary-foreground: 45 60% 92%;
+
+    --muted: 160 14% 14%;
+    --muted-foreground: 140 8% 70%;
+
+    --accent: 45 70% 45%;
+    --accent-foreground: 150 15% 10%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 12% 20%;
+    --input: 160 12% 20%;
+    --ring: 152 44% 40%;
+
+    --sidebar-background: 150 20% 8%;
+    --sidebar-foreground: 140 10% 96%;
+    --sidebar-primary: 152 44% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 14% 14%;
+    --sidebar-accent-foreground: 140 10% 96%;
+    --sidebar-border: 160 12% 20%;
+    --sidebar-ring: 152 44% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family:
+      "Poppins",
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      Segoe UI,
+      Roboto,
+      Helvetica,
+      Arial,
+      "Apple Color Emoji",
+      "Segoe UI Emoji";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family:
+      "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times,
+      serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .glass {
+    @apply bg-background/40 backdrop-blur-md border border-white/10 shadow-[0_0_1px_rgba(255,255,255,0.1)_inset,0_8px_24px_-12px_rgba(0,0,0,0.6)];
+  }
+  .gradient-forest {
+    background:
+      radial-gradient(
+        1200px 600px at 20% 0%,
+        hsl(160 22% 12% / 0.9) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        800px 400px at 80% 0%,
+        hsl(152 44% 18% / 0.8) 0%,
+        transparent 60%
+      ),
+      linear-gradient(
+        180deg,
+        hsl(150 20% 8%) 0%,
+        hsl(160 14% 10%) 60%,
+        hsl(28 22% 12%) 100%
+      );
+  }
+  .fog-bottom {
+    position: relative;
+  }
+  .fog-bottom::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 140px;
+    background: radial-gradient(
+      100% 60% at 50% 0%,
+      hsl(150 20% 8% / 0.9) 0%,
+      transparent 60%
+    );
+    filter: blur(8px) saturate(90%);
+    pointer-events: none;
+  }
+  .pulse-glow {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0.6);
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+  .gradient-future {
+    background:
+      radial-gradient(
+        800px 400px at 10% 10%,
+        hsl(252 80% 22% / 0.6) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        600px 300px at 90% 0%,
+        hsl(210 90% 60% / 0.35) 0%,
+        transparent 60%
+      ),
+      linear-gradient(
+        180deg,
+        hsl(240 40% 12%) 0%,
+        hsl(260 30% 14%) 50%,
+        hsl(220 40% 12%) 100%
+      );
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px hsl(var(--accent) / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0);
+  }
+}
+
+/* Neon sliding frame showing AI live */
+.neon-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.neon-frame::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    hsl(152 70% 45%),
+    hsl(45 90% 60%),
+    hsl(152 70% 45%)
+  );
+  background-size: 300% 100%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: neonSlide 6s linear infinite;
+  opacity: 0.6;
+  box-shadow: 0 0 24px hsl(152 70% 30% / 0.35);
+}
+@keyframes neonSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Logo glow */
+.logo-glow {
+  filter: drop-shadow(0 0 6px hsl(152 70% 40% / 0.6));
+}
+.logo-glow {
+  animation: logoGlow 3.2s ease-in-out infinite;
+}
+.font-hero {
+  font-family:
+    "Space Grotesk",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 4px hsl(152 70% 40%/0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px hsl(45 90% 60%/0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px hsl(152 70% 40%/0.4));
+  }
+}
+
+/* Hide scrollbars for designated containers */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* live voice ball styles removed */
+
+/* Chat scrollbar styles */
+@layer utilities {
+  .chat-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+    overscroll-behavior: contain;
+  }
+  .chat-scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .chat-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--primary) / 0.9) 0%,
+      hsl(var(--accent) / 0.9) 100%
+    );
+  }
+}
